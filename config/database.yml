@@ -24,7 +24,7 @@ test:
    host: localhost
    
 production:
-   adapter: mysql2
+   adapter: postgresql
    database: quiz_production
    username: 
    password: 
