@@ -58,6 +58,6 @@ Rails.application.routes.draw do
   
   # Routes for APIs
   namespace :api do
-    get 'questions' => 'question#questions'
+    get 'questions' => 'question#questions', defaults: {format: :json}
   end
 end
