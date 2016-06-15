@@ -1,7 +1,7 @@
 class Api::ApiController < ApplicationController
   layout false
-
-  #include ApiConcern
+  skip_before_action :verify_authenticity_token
+  include ApiConcern
 
   # Custom exception handling
   rescue_from Exception do |exception|
@@ -23,4 +23,5 @@ class Api::ApiController < ApplicationController
   def routing_error
     fail ActionController::RoutingError.new(params[:path]), 'Routing Error'
   end
+
 end

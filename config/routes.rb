@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => {:registrations => "registrations",:sessions => "api/sessions"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -55,9 +56,14 @@ Rails.application.routes.draw do
   #   end
 
   root 'welcome#index'
-  
-  # Routes for APIs
-  namespace :api do
-    get 'questions' => 'question#questions', defaults: {format: :json}
+
+  namespace :api, defaults: { format: :json } do
+    get 'questions' => 'question#questions'
+    devise_scope :user do
+      post '/login'      => 'sessions#create'
+      get '/logged_user' => 'sessions#logged_in_user'
+      delete '/logout'   => 'sessions#destroy'
+      post '/signup' => 'registrations#signup'
+    end
   end
 end
