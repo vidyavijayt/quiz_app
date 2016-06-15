@@ -13,18 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160615113556) do
 
-  create_table "api_keys", force: :cascade do |t|
-    t.integer  "user_id",      limit: 4
-    t.string   "access_token", limit: 255
-    t.datetime "expires_at"
-    t.boolean  "is_active"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "api_keys", ["access_token"], name: "index_api_keys_on_access_token", using: :btree
-  add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
-
   create_table "choices", force: :cascade do |t|
     t.integer  "question_id", limit: 4
     t.string   "choice",      limit: 255
