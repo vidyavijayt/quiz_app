@@ -1,7 +1,6 @@
 class Api::ApiController < ApplicationController
   layout false
   skip_before_action :verify_authenticity_token
-  include ApiConcern
 
   # Custom exception handling
   rescue_from Exception do |exception|
