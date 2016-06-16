@@ -12,7 +12,7 @@ class Api::ApiController < ApplicationController
   def handle_error(e)
     error_info = {
       data: {},
-      message: e.class.name + ':' + e.message,
+      message: e.message,
       status: STATUS[:failure]
     }
     render json: error_info
