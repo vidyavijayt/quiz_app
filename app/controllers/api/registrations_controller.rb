@@ -13,12 +13,20 @@ class Api::RegistrationsController < Api::ApiController
       }, status: STATUS[:failure]
     else
       user = User.new(user_params)
-      render json: {
-        success: true,
-        redirect_to: root_path,
-        message: 'Signup Success',
-        user: user,
-      }, status: STATUS[:success] if user.save!
+      if user.save
+        render json: {
+          success: true,
+          redirect_to: root_path,
+          message: 'Signup Success',
+          user: user,
+        }, status: :ok
+      else
+        render json: {
+          success: false,
+          redirect_to: root_path,
+          message: 'Enter login credentials',
+        }, status: STATUS[:failure]
+      end
     end
   end
 
