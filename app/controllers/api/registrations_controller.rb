@@ -10,7 +10,7 @@ class Api::RegistrationsController < Api::ApiController
         success: false,
         redirect_to: root_path,
         message: 'Enter login credentials',
-      }, status: STATUS[:failure]
+      }
     else
       user = User.new(user_params)
       if user.save
@@ -25,7 +25,7 @@ class Api::RegistrationsController < Api::ApiController
           success: false,
           redirect_to: root_path,
           message: 'Enter login credentials',
-        }, status: STATUS[:failure]
+        }
       end
     end
   end
