@@ -24,7 +24,7 @@ module Api
         render json: {
           success: false,
           message: t('devise.sessions.inactive_account')
-        }, status: STATUS[:failure]
+        }
       end
     end
 
@@ -41,7 +41,7 @@ module Api
         message: t('devise.sessions.signed_out'),
         csrfParam: request_forgery_protection_token,
         csrfToken: form_authenticity_token
-      }, status: STATUS[:success]
+      }, status: :ok
     end
 
     # Failure
@@ -49,7 +49,7 @@ module Api
       render json: {
         success: false,
         message: 'Invalid login credentials'
-      }, status: STATUS[:failure]
+      }
     end
 
     # Logged in user
@@ -63,7 +63,7 @@ module Api
         success: true,
         message: 'Logged in user',
         user: current_user
-      }, status: STATUS[:success]
+      }, status: :ok
     end
 
     # To handle signin and redirection.
@@ -74,10 +74,9 @@ module Api
       render json: {
         success: true,
         redirect_to: root_path,
-        is_registered_user: true,
         message: t('devise.sessions.signed_in'),
         user: current_user
-      }, status: STATUS[:success]
+      }, status: :ok
     end
   end
 end
