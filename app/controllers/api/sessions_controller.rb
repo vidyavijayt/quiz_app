@@ -74,6 +74,7 @@ module Api
       render json: {
         success: true,
         redirect_to: root_path,
+        is_registered_user: true,
         message: t('devise.sessions.signed_in'),
         user: current_user
       }, status: STATUS[:success]

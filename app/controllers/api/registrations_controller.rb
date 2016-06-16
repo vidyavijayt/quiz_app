@@ -4,20 +4,22 @@ class Api::RegistrationsController < Api::ApiController
 
   # API for standard sign up
   def signup
-    unless params.present? && params[:user].present?
+    if params.blank? && params[:user].blank?
       # return invalid_response(resp['invalid_api'])
       render json: {
         success: false,
         redirect_to: root_path,
         message: 'Enter login credentials',
       }, status: STATUS[:failure]
+    else
+      user = User.new(user_params)
+      render json: {
+        success: true,
+        redirect_to: root_path,
+        message: 'Signup Success',
+        user: user,
+      }, status: STATUS[:success] if user.save!
     end
-    user = User.new(user_params)
-    render json: {
-      success: true,
-      redirect_to: root_path,
-      message: 'Signup Success',
-    }, status: STATUS[:success] if user.save!
   end
 
   private
