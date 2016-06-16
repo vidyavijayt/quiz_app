@@ -24,7 +24,7 @@ class Api::RegistrationsController < Api::ApiController
         render json: {
           success: false,
           redirect_to: root_path,
-          message: 'Enter login credentials',
+          message: user.errors.full_messages,
         }
       end
     end
